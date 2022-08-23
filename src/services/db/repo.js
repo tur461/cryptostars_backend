@@ -1,6 +1,9 @@
-const fs = require('fs').promises;
+const fs = require('fs');
 const path = require('path');
-const { DB_FILE } = require('../constants');
+const { DB_FILE, ERROR } = require('../constants');
+const { jString, jObject } = require('../utils');
+
+const fsPromise = fs.promises;
 
 const isTokenInfoValid = tokenInfo => {
   return !tokenInfo.addr ? !1 :
@@ -13,14 +16,25 @@ const DB_REPO = (function(){
   return {
     saveTokenInfo:  async tokenInfo => {
       if(isTokenInfoValid(tokenInfo)) {
-        await fs.writeFile(
-          path.resolve(__dirname, DB_FILE.TOKEN_INFOS), 
-          JSON.stringify(tokenInfo)
-        );
-      } else throw new Error('Invalid token info format!')
+        const filePath = path.resolve(__dirname, DB_FILE.TOKEN_INFOS);
+        return new Promise(
+          (r, j) => fs.readFile(filePath, 'utf-8', (e, content) => {
+            content = jObject(content);
+            content.push(tokenInfo);
+            console.log('content:',content, filePath);
+            
+            fs.writeFile(
+              filePath, 
+              jString(content), 
+              {flag: 'w'}, 
+              (e, s) => e && j(e) || r(tokenInfo)
+            );  
+        }));
+        
+      } else throw ERROR.TOKEN_FORMAT;
     },
-    getTokenInfos: async _ => {
-      const content = await fs.readFile(
+    getTokenInfoList: async _ => {
+      const content = await fsPromise.readFile(
         path.resolve(__dirname, DB_FILE.TOKEN_INFOS),
         'utf-8'
       );

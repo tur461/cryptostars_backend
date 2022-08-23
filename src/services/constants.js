@@ -1,3 +1,6 @@
+
+const PORT = 8448;
+
 const DB_FILE = {
   TOKEN_INFOS: 'files/token_info.json',
 }
@@ -22,7 +25,13 @@ const ROUTE = {
   }
 }
 
+const ERROR = {
+  TOKEN_FORMAT: 'Invalid token info format!',
+}
+
 module.exports = {
+  PORT,
+  ERROR,
   ROUTE,
   DB_FILE,
 }
