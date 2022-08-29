@@ -1,7 +1,7 @@
 
 const PORT = 8448;
 
-const UPLOAD_PATH = 'uploads/';
+const UPLOAD_PATH = 'public/uploads/';
 
 const DB_FILE = {
   TOKEN_INFOS: 'files/token_info.json',
@@ -15,7 +15,8 @@ const ROUTE = {
     '/*.html',
     '/*.ico', 
     '/*.json', 
-    '/static/*', 
+    '/static/*',
+    '/uploads/*.png', 
     '/robots.txt',
   ],
   API: {

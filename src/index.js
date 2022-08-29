@@ -25,8 +25,6 @@ app.use(express.json());
 
 app.use(bodyParser.urlencoded({ extended: !1 }));
 
-// app.use('/public/images', express.static(__dirname + '/public/images/'));
-
 app.options('*', cors(corsOpts))
 
 // => Admin panel

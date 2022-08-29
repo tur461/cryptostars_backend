@@ -9,6 +9,9 @@ const isTokenInfoValid = tokenInfo => {
   return !tokenInfo.addr ? !1 :
     !tokenInfo.sym ? !1 :
     !tokenInfo.dec ? !1 :
+    !tokenInfo.icon ? !1 :
+    !tokenInfo.name ? !1 :
+    !tokenInfo.supply ? !1 :
     !0;
 }
 
