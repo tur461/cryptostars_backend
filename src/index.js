@@ -1,30 +1,31 @@
 const cors = require('cors');
+const multer = require('multer');
 const express = require('express');
 const bodyParser = require("body-parser");
 const { sendFile } = require('./services/helpers.js');
 const API_HANDLER = require('./services/api_handlers.js');
-const { ROUTE, PORT } = require('./services/constants.js');
+const { ROUTE, PORT, UPLOAD_PATH } = require('./services/constants.js');
 
 const corsOpts = {
 	origin: '*',
 }
 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, UPLOAD_PATH),
+  filename: (req, file, cb)=> cb(null, file.originalname),
+});
+
 const app = express();
 
-// app.all('*', function (req, res, next) {
-// 	console.log('request:', req.originalUrl);
-// 	console.log('request:', req.body);
-// 	res.header("Access-Control-Allow-Origin", "*");
-// 	res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
-// 	res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-// 	next();
-// });
+const upload = multer({ storage });
 
 // express plugins and extensions
 
 app.use(express.json());
 
 app.use(bodyParser.urlencoded({ extended: !1 }));
+
+// app.use('/public/images', express.static(__dirname + '/public/images/'));
 
 app.options('*', cors(corsOpts))
 
@@ -43,6 +44,8 @@ app.get(ROUTE.API.GET.TOKEN_INFO_LIST, cors(corsOpts), API_HANDLER.getTokenInfoL
 // => POST
 
 app.post(ROUTE.API.POST.SAVE_TOKEN_INFO, cors(corsOpts), API_HANDLER.saveTokenInfo);
+
+app.post(ROUTE.API.POST.SAVE_TOKEN_ICON, cors(corsOpts), upload.single('token_icon'), API_HANDLER.saveTokenIcon);
 
 // => connection listener
 

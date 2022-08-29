@@ -38,6 +38,22 @@ const API_HANDLER = (function() {
 				});
 			}
 		},
+		saveTokenIcon: async (req, resp) => {
+			try {
+				console.log('save token icon headers:', req.headers);
+				console.log('body:', req.body);
+				console.log('token icon:', req.file);
+				resp.json({
+					msg: 'token icon upload success!'
+				})
+			} catch(e) {
+				resp.status(STATUS_CODE.INVALID_DATA)
+				.send({
+					msg: e,
+					err: !0,
+				});
+			}
+		}
     }
 })();
 

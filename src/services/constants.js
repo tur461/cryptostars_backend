@@ -1,6 +1,8 @@
 
 const PORT = 8448;
 
+const UPLOAD_PATH = 'uploads/';
+
 const DB_FILE = {
   TOKEN_INFOS: 'files/token_info.json',
 }
@@ -10,6 +12,7 @@ const ROUTE = {
   STATIC_FILE: [
     '*.xml', 
     '/*.png', 
+    '/*.html',
     '/*.ico', 
     '/*.json', 
     '/static/*', 
@@ -21,6 +24,7 @@ const ROUTE = {
     },
     POST: {
       SAVE_TOKEN_INFO: '/api/save/tokenInfo',
+      SAVE_TOKEN_ICON: '/api/save/tokenIcon',
     }
   }
 }
@@ -40,5 +44,6 @@ module.exports = {
   ERROR,
   ROUTE,
   DB_FILE,
+  UPLOAD_PATH,
   STATUS_CODE,
 }

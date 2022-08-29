@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+</head>
+<body>
+    <input type='file'>
+    <script>
+        async function handleFileUpload(e) {
+            let formData = new FormData();
+            
+            formData.append('token_icon', e.target.files[0]);
+
+            fetch('/api/save/tokenIcon', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(r => console.log('response:', r))
+            .catch(err => console.log('error:', err))
+
+            console.log('request sent!');
+        }
+        
+        document.querySelector('input')
+        .addEventListener('change', handleFileUpload);
+        
+    </script>
+</body>
+</html>
