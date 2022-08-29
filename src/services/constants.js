@@ -1,7 +1,7 @@
 
 const PORT = 8448;
 
-const UPLOAD_PATH = 'public/uploads/';
+const UPLOAD_PATH = 'src/public/uploads/';
 
 const DB_FILE = {
   TOKEN_INFOS: 'files/token_info.json',

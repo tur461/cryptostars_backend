@@ -1,3 +1,4 @@
+const fs = require('fs');
 const cors = require('cors');
 const multer = require('multer');
 const express = require('express');
@@ -11,7 +12,10 @@ const corsOpts = {
 }
 
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, UPLOAD_PATH),
+  destination: (req, file, cb) => {
+		fs.mkdirSync(UPLOAD_PATH, { recursive: true })
+		cb(null, UPLOAD_PATH);
+	},
   filename: (req, file, cb)=> cb(null, file.originalname),
 });
 
