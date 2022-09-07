@@ -79,7 +79,7 @@ const DB_REPO = (function(){
     },
     setProjectVersion: async (projectId, version) => {
       const filePath = path.resolve(__dirname, DB_FILE.MISC_INFO);
-      return new Promise((r, j) => {
+      return new Promise(async (r, j) => {
         const content = jObject(await fsPromise.readFile(
           filePath,
           'utf-8'
