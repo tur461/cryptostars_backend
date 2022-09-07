@@ -19,6 +19,8 @@ const ROUTE = {
     '/*.json', 
     '/static/*',
     '/uploads/*.png', 
+    '/uploads/*.jpg', 
+    '/uploads/*.jpeg',
     '/robots.txt',
   ],
   API: {
