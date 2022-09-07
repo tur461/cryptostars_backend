@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
 		fs.mkdirSync(UPLOAD_PATH, { recursive: true })
 		cb(null, UPLOAD_PATH);
 	},
-  filename: (req, file, cb)=> cb(null, file.originalname),
+  filename: (req, file, cb)=> cb(null, file.originalname.split(' ').join('_')),
 });
 
 const app = express();
@@ -41,11 +41,19 @@ app.get(ROUTE.STATIC_FILE, (req, resp) => sendFile(resp, req.originalUrl.slice(1
 
 // => GET
 
+app.get(ROUTE.API.GET.POOL_INFO_LIST, cors(corsOpts), API_HANDLER.getPoolInfoList);
+
 app.get(ROUTE.API.GET.TOKEN_INFO_LIST, cors(corsOpts), API_HANDLER.getTokenInfoList);
+
+app.get(ROUTE.API.GET.PROJECT_VERSION, cors(corsOpts), API_HANDLER.getProjectVersion);
 
 // => POST
 
+app.post(ROUTE.API.POST.SAVE_POOL_INFO, cors(corsOpts), API_HANDLER.savePoolInfo);
+
 app.post(ROUTE.API.POST.SAVE_TOKEN_INFO, cors(corsOpts), API_HANDLER.saveTokenInfo);
+
+app.post(ROUTE.API.POST.UPDATE_PROJECT_VER, cors(corsOpts), API_HANDLER.updateProjectVersion);
 
 app.post(ROUTE.API.POST.SAVE_TOKEN_ICON, cors(corsOpts), upload.single('token_icon'), API_HANDLER.saveTokenIcon);
 

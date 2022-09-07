@@ -4,7 +4,9 @@ const PORT = 8448;
 const UPLOAD_PATH = 'src/public/uploads/';
 
 const DB_FILE = {
+  POOl_INFOS: 'files/pool_info.json',
   TOKEN_INFOS: 'files/token_info.json',
+  MISC_INFO: 'files/miscellaneous_info.json',
 }
 
 const ROUTE = {
@@ -21,16 +23,21 @@ const ROUTE = {
   ],
   API: {
     GET: {
+      POOL_INFO_LIST: '/api/get/poolInfoList',
       TOKEN_INFO_LIST: '/api/get/tokenInfoList',
+      PROJECT_VERSION: '/api/get/projectVersion',
     },
     POST: {
+      SAVE_POOL_INFO: '/api/save/poolInfo',
       SAVE_TOKEN_INFO: '/api/save/tokenInfo',
       SAVE_TOKEN_ICON: '/api/save/tokenIcon',
+      UPDATE_PROJECT_VER: '/api/update/projectVersion',
     }
   }
 }
 
 const ERROR = {
+  POOL_FORMAT: 'Invalid pool info format!',
   TOKEN_FORMAT: 'Invalid token info format!',
 }
 
@@ -40,11 +47,17 @@ const STATUS_CODE = {
   INTERNAL_SERVER_ERROR: 500,
 }
 
+const PROJECT_IDS = [
+  'crypto-stars_front_end',
+  'crypto-stars_admin_panel',
+]
+
 module.exports = {
   PORT,
   ERROR,
   ROUTE,
   DB_FILE,
+  PROJECT_IDS,
   UPLOAD_PATH,
   STATUS_CODE,
 }

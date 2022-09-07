@@ -58,7 +58,15 @@ const notEmpty = v => typeof v == 'string' ?
 
 const isEmpty = v => !notEmpty(v);
 
-const contains = (txt, v) => txt.toLowerCase().indexOf(v.toLowerCase()) > -1;
+const contains = (target, v) => {
+    return !isStr(v) ? !1 : 
+        isStr(target) ?
+        txt.toLowerCase().indexOf(v.toLowerCase()) > -1 :
+        isArr(target) && target.every(item => isStr(item)) ? 
+        target.includes(v) :
+        isObj(target) ?
+        target.entries().includes(v) : !1;
+}
 
 const evDispatch = (eName, d) => dispatchEvent(new CustomEvent(eName, {detail: d}));
 
