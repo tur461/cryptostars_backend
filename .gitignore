@@ -1,6 +1,13 @@
 node_modules
 .env
-src/public
+src/public/*.html
+src/public/static
+src/public/*.txt
+src/public/*.png
+src/public/*.ico
+src/public/uploads/*.png
+src/public/uploads/*.jpg
+src/public/uploads/*.jpeg
 *.png
 *.jpeg
 *.jpg
