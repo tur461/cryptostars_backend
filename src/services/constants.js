@@ -27,12 +27,12 @@ const ROUTE = {
     GET: {
       POOL_INFO_LIST: '/api/get/poolInfoList',
       TOKEN_INFO_LIST: '/api/get/tokenInfoList',
-      PROJECT_VERSION: '/api/get/projectVersion',
     },
     POST: {
       SAVE_POOL_INFO: '/api/save/poolInfo',
       SAVE_TOKEN_INFO: '/api/save/tokenInfo',
       SAVE_TOKEN_ICON: '/api/save/tokenIcon',
+      PROJECT_VERSION: '/api/get/projectVersion',
       UPDATE_PROJECT_VER: '/api/update/projectVersion',
     }
   }

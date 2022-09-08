@@ -45,13 +45,14 @@ app.get(ROUTE.API.GET.POOL_INFO_LIST, cors(corsOpts), API_HANDLER.getPoolInfoLis
 
 app.get(ROUTE.API.GET.TOKEN_INFO_LIST, cors(corsOpts), API_HANDLER.getTokenInfoList);
 
-app.get(ROUTE.API.GET.PROJECT_VERSION, cors(corsOpts), API_HANDLER.getProjectVersion);
 
 // => POST
 
 app.post(ROUTE.API.POST.SAVE_POOL_INFO, cors(corsOpts), API_HANDLER.savePoolInfo);
 
 app.post(ROUTE.API.POST.SAVE_TOKEN_INFO, cors(corsOpts), API_HANDLER.saveTokenInfo);
+
+app.post(ROUTE.API.POST.PROJECT_VERSION, cors(corsOpts), API_HANDLER.getProjectVersion);
 
 app.post(ROUTE.API.POST.UPDATE_PROJECT_VER, cors(corsOpts), API_HANDLER.updateProjectVersion);
 
