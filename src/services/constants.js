@@ -50,8 +50,8 @@ const STATUS_CODE = {
 }
 
 const PROJECT_IDS = [
-  'crypto-stars_front_end',
-  'crypto-stars_admin_panel',
+  'front_end',
+  'admin_panel',
 ]
 
 module.exports = {

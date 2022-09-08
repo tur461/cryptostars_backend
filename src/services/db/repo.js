@@ -84,13 +84,19 @@ const DB_REPO = (function(){
           filePath,
           'utf-8'
         ));
-        content.version[projectId] = version;
-        fs.writeFile(
-          filePath, 
-          jString(content), 
-          {flag: 'w'}, 
-          (e, s) => e && j(e) || r('success')
-        );
+        if(!content.version[projectId]) j('invalid projectId');
+        else if(content.version[projectId] != version) {
+          content.version[projectId] = `${version}`;
+          console.log('content:', content, version);
+          fs.writeFile(
+            filePath, 
+            jString(content), 
+            {flag: 'w'}, 
+            (e, s) => e && j(e) || r('success')
+          );
+        } else {
+          r('success');
+        }
       })
     }
   }

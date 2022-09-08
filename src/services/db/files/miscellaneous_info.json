@@ -1,6 +1,1 @@
-{
-    "version": {
-        "crypto-stars_front_end": 0.01, 
-        "crypto-stars_admin_panel": 0.01 
-    }
-}
+{"version":{"front_end":"0.02","admin_panel":"0.01"}}

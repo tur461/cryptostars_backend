@@ -27,10 +27,11 @@ const API_HANDLER = (function() {
         updateProjectVersion: async (req, resp) => {
             console.log('api get project version');
             try {
+				const version = req.body.version;
 				const projectId = req.body.projectId;
 				if(!contains(PROJECT_IDS, projectId)) 
 					throw new Error('invalid projectId: ' + projectId);
-				const data = await DB_REPO.setProjectVersion(projectId);
+				const data = await DB_REPO.setProjectVersion(projectId, version);
 				resp.send({
 					data,
 					err: !1,
